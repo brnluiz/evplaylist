@@ -1,8 +1,0 @@
-[core]
-	repositoryformatversion = 0
-	filemode = true
-	bare = false
-	logallrefupdates = true
-[remote "remote-03fe4c"]
-	url = git@github.com:brnluiz/evplaylist.git
-	fetch = +refs/heads/*:refs/remotes/remote-03fe4c/*
