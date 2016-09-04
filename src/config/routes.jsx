@@ -4,7 +4,8 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import PlayerBox from 'containers/PlayerBox';
 
-const routes =
-<Route path="/" component={PlayerBox}/>;
-
-export default routes;
+export default (
+  <Router history={hashHistory}>
+    <Route path="/" component={PlayerBox}/>
+  </Router>
+);
