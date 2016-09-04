@@ -9,7 +9,8 @@ class PlayerBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlist: []
+      playlist: [],
+      video: 'iV5VKdcQOJE'
     };
   }
 
@@ -19,11 +20,17 @@ class PlayerBox extends React.Component {
 
   fetchPlaylist() {
     let data = [
-      {youtube: {video_id: '123', title:'Test 1', duration: '3:00'}, facebook: {post_id:'123', user_id:'123', user: 'Bruno Luiz', likes:12}},
-      {youtube: {video_id: '123', title:'Test 2', duration: '3:00'}, facebook: {post_id:'123', user_id:'123', user: 'Bruno Luiz', likes:12}},
+      {youtube: {video_id: 'yxHw2CmdI9A', title:'Test 1', duration: '3:00'}, facebook: {post_id:'123', user_id:'123', user: 'Bruno Luiz', likes:12}},
+      {youtube: {video_id: 'iV5VKdcQOJE', title:'Test 2', duration: '3:00'}, facebook: {post_id:'123', user_id:'123', user: 'Bruno Luiz', likes:12}},
     ];
 
     this.setState({playlist: data});
+  }
+
+  playlistItemClickHandler(item) {
+    console.log(item);
+    console.log(this);
+    this.setState({video: item.youtube.video_id});
   }
 
   render() {
@@ -37,16 +44,19 @@ class PlayerBox extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-lg-7'>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div className="embed-responsive embed-responsive-16by9">
               <YouTube
                 className='player'
-                videoId="yxHw2CmdI9A"
+                videoId={this.state.video}
                 opts={yt}
               />
             </div>
           </div>
           <div className='col-lg-5'>
-            <PlaylistList items={this.state.playlist} />
+            <PlaylistList
+              items={this.state.playlist}
+              onClickHandler={this.playlistItemClickHandler.bind(this)}
+              />
           </div>
         </div>
       </div>
