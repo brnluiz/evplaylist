@@ -43,12 +43,6 @@ class PlayerBox extends React.Component {
   }
 
   render() {
-    var yt = {
-      playerVars: {
-        autoplay: 0
-      }
-    };
-
     return(
       <div className='container'>
         <div className='row'>
@@ -57,7 +51,7 @@ class PlayerBox extends React.Component {
               <YouTube
                 className='player'
                 videoId={this.state.video}
-                opts={yt}
+                opts={this.props.yt}
               />
             </div>
           </div>
@@ -72,4 +66,16 @@ class PlayerBox extends React.Component {
     );
   }
 }
- export default PlayerBox;
+
+PlayerBox.propTypes = {
+  yt: React.PropTypes.object
+} 
+PlayerBox.defaultProps = {
+  yt: {
+    playerVars: {
+      autoplay: 0
+    }
+  }
+}
+
+export default PlayerBox;
