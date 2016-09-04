@@ -4,6 +4,8 @@ import {Component, PropTypes} from 'react';
 import PlaylistList from 'components/PlaylistList';
 import YouTube from 'react-youtube';
 import styles from './styles.css';
+import store from 'config/store';
+import {nextMusic} from './actions';
 
 class PlayerBox extends React.Component {
   constructor(props) {
@@ -17,11 +19,18 @@ class PlayerBox extends React.Component {
   componentDidMount() {
     this.fetchPlaylist();
   }
-
+// iV5VKdcQOJE
   fetchPlaylist() {
     let data = [
-      {youtube: {video_id: 'yxHw2CmdI9A', title:'Test 1', duration: '3:00'}, facebook: {post_id:'123', user_id:'123', user: 'Bruno Luiz', likes:12}},
-      {youtube: {video_id: 'iV5VKdcQOJE', title:'Test 2', duration: '3:00'}, facebook: {post_id:'123', user_id:'123', user: 'Bruno Luiz', likes:12}},
+      {
+        video_id: 'yxHw2CmdI9A',
+        post_id: '123',
+        user_id: '456',
+        user_name: 'Bruno Luiz da Silva',
+        title: '505 lyrics - Arctic Monkeys',
+        duration: '3:00',
+        post_likes: 12
+      }
     ];
 
     this.setState({playlist: data});
@@ -36,7 +45,7 @@ class PlayerBox extends React.Component {
   render() {
     var yt = {
       playerVars: {
-        autoplay: 1
+        autoplay: 0
       }
     };
 
