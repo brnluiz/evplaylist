@@ -1,0 +1,31 @@
+li {
+  cursor: pointer;
+}
+li:hover {
+  background: #fafafa;
+}
+li:active {
+  background: #eee;
+}
+
+.list-group-item:first-child {
+  border-radius: 0;
+}
+
+.list-group-item:last-child {
+  border-radius: 0;
+}
+
+.social-info {
+  margin-top: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  display: block;
+}
+.social-info > span {
+  margin-right: 5px;
+}
+
+.info-likes, .info-duration {
+  float: right;
+}

@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from 'react-dom'
 import { Router, Route, hashHistory } from 'react-router'
 
-import HelloWorldBox from 'containers/HelloWorldBox/HelloWorldBox';
+import PlayerBox from 'containers/PlayerBox';
 
 const routes =
-<Route path="/" component={HelloWorldBox}/>;
+<Route path="/" component={PlayerBox}/>;
 
 export default routes;
