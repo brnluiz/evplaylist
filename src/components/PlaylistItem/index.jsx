@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 const PlaylistItem = ({item}) => (
     <li className="list-group-item">
-      <div class="music-info">
+      <div className="music-info">
         <span className="info-title">{item.youtube.title}</span>
         <span className="badge info-duration">{item.youtube.duration}</span>
       </div>

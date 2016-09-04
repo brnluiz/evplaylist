@@ -2,6 +2,8 @@ import React from 'react';
 import {Component, PropTypes} from 'react';
 
 import PlaylistList from 'components/PlaylistList';
+import YouTube from 'react-youtube';
+import styles from './styles.css';
 
 class PlayerBox extends React.Component {
   constructor(props) {
@@ -25,11 +27,23 @@ class PlayerBox extends React.Component {
   }
 
   render() {
+    var yt = {
+      playerVars: {
+        autoplay: 1
+      }
+    };
+
     return(
       <div className='container'>
         <div className='row'>
           <div className='col-lg-7'>
-            <h2>Player</h2>
+            <div class="embed-responsive embed-responsive-16by9">
+              <YouTube
+                className='player'
+                videoId="yxHw2CmdI9A"
+                opts={yt}
+              />
+            </div>
           </div>
           <div className='col-lg-5'>
             <PlaylistList items={this.state.playlist} />
