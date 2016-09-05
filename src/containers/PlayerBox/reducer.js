@@ -11,7 +11,7 @@ const initialState = fromJS({
     video_id: 'iV5VKdcQOJE',
     post_id: '123',
     user_id: '456',
-    user_name: 'Bruno Luiz da Silva',
+    user: 'Bruno Luiz da Silva',
     title: '505 lyrics - Arctic Monkeys',
     duration: '3:00',
     post_likes: 12
@@ -20,7 +20,7 @@ const initialState = fromJS({
     video_id: 'yxHw2CmdI9A',
     post_id: '123',
     user_id: '456',
-    user_name: 'Bruno Luiz da Silva',
+    user: 'Bruno Luiz da Silva',
     title: 'Metallica - Kill \'Em All [Full Album HD]',
     duration: '3:00',
     post_likes: 12
@@ -29,7 +29,7 @@ const initialState = fromJS({
     video_id: 'iV5VKdcQOJE',
     post_id: '123',
     user_id: '456',
-    user_name: 'Bruno Luiz da Silva',
+    user: 'Bruno Luiz da Silva',
     title: '505 lyrics - Arctic Monkeys',
     duration: '3:00',
     post_likes: 12
