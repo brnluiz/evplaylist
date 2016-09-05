@@ -1,7 +1,21 @@
-import * as types from './constants';
+import * as type from './constants';
 
-export function nextMusic() {
+export function playNext() {
   return {
-    type: types.NEXT_MUSIC
+    type: type.NEXT_MUSIC
   };
+}
+
+export function playMusic(item) {
+  return {
+    type: type.CHANGE_MUSIC,
+    item: item
+  }
+}
+
+export function updatePlayerStatus(status) {
+  return {
+    type: type.PLAYER_UPDATE,
+    status: status
+  }
 }

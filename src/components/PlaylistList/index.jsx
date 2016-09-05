@@ -5,9 +5,9 @@ import styles from './styles.css';
 
 const PlaylistList = ({items, onClickHandler}) => (
   <div className="list-group music-list">
-    {items.map((music,i) => <PlaylistItem
-      key={i}
+    {items.map((music) => <PlaylistItem
       props={music}
+      key={music.id}
       onClickHandler={() => onClickHandler(music)}
     />)}
   </div>
