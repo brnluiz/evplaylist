@@ -12,9 +12,13 @@ export default class YoutubeDataApi {
   }
 
   // Return the ID of the video or false (in case that it is not a youtube url)
-  getIdFromUrl(url) {
-    let pattern = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  id(url) {
+    let pattern = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shared\?ci=|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
     return (url.match(pattern)) ? RegExp.$1 : false;
+  }
+
+  duration(isoTime) {
+    return isoTime.replace("PT","").replace("H",":").replace("M",":").replace("S","");
   }
 
   insert(data) {
@@ -30,11 +34,32 @@ export default class YoutubeDataApi {
   }
 
   fetch() {
-    let data = this.batch.reduce((final, actual, index) => {
-      return final + ',' + actual;
+    // Prepare the Axios batch
+    let axiosBatch = this.batch.reduce((final, actual, index) => {
+      // Reduce the whole array to string batches, each one with 50 id's
+      let batch = Math.floor(index/50);
+      final[batch] = (!final[batch]) ? actual : (final[batch] + ',' + actual);
+
+      return final;
+    }, [])
+    .map((obj) => {
+      // Prepare all axios get requests to be used on axios.all()
+      return this.get(obj);
     });
 
-    return this.get(data);
+    // Execute the batch and then map-reduce the resulting arrays to a single one
+    let res = axios.all(axiosBatch).then((data) => {
+      let join = data.map((obj) => {
+        return obj.data.items;
+      })
+      .reduce((final, actual) => {
+        return final.concat(actual);
+      }, []);
+
+      return join;
+    });
+
+    return res;
   }
 
   get(id) {
