@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login';
 
 import { connect } from 'react-redux';
 
-import * as facebook from 'config/facebook';
+import * as keys from 'config/keys';
 import FacebookPromises from 'utils/FacebookPromises';
 
 let testQuery = '/1806771916202660/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
@@ -21,14 +21,14 @@ class HomePage extends React.Component {
       console.log(res);
       return res;
     }).then((res) => {
-
+      return ;
     });
   }
 
   render() {
     return (
       <FacebookLogin
-        appId={facebook.APP_ID}
+        appId={keys.FB_APP_ID}
         autoLoad={true}
         callback={this.responseFacebook}
       />
