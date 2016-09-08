@@ -3,14 +3,14 @@ import PlaylistItem from 'components/PlaylistItem';
 
 import styles from './styles.css';
 
-const PlaylistList = ({items, onClickHandler}) => (
-  <div className="list-group music-list">
+const PlaylistList = ({items, onClickHandler, height}) => (
+  <ul className="list-group music-list" style={{height: height}}>
     {items.map((music) => <PlaylistItem
       props={music}
       key={music.id}
       onClickHandler={() => onClickHandler(music)}
     />)}
-  </div>
+  </ul>
 );
 
 export default PlaylistList;

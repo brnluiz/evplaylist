@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
 // Import your reducers here
-import playerReducer from 'containers/PlayerBox/reducer'
+import playerReducer from 'containers/VideoPlayer/reducer'
+import playlistReducer from 'containers/Playlist/reducer'
 
 // Combine the imported reducers below
 var reducers = combineReducers({
-  playerState: playerReducer
+  player: playerReducer,
+  playlist: playlistReducer
 });
 
 export default reducers;
