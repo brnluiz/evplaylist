@@ -4,6 +4,9 @@ import FacebookLogin from 'react-facebook-login';
 
 import { connect } from 'react-redux';
 
+import store from 'config/store';
+import * as action from './actions';
+
 import * as keys from 'config/keys';
 import FacebookPromises from 'utils/FacebookPromises';
 import YoutubeDataApi from 'utils/YoutubeDataApi';
@@ -83,13 +86,24 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <FacebookLogin
-        appId={keys.FB_APP_ID}
-        autoLoad={true}
-        callback={this.responseFacebook}
-      />
+      <div className='container'>
+        <div className='row'>
+          <FacebookLogin
+            appId={keys.FB_APP_ID}
+            autoLoad={true}
+            callback={this.responseFacebook}
+          />
+        </div>
+      </div>
     )
   }
 }
 
-export default HomePage;
+
+const mapStateToProps = function(store) {
+  return {
+
+  };
+};
+
+export default connect(mapStateToProps)(HomePage)
