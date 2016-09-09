@@ -11,7 +11,7 @@ export default (
     <Route path='/login' component={HomePage}/>
     <Route path='/' component={AppLayout}>
       <IndexRoute component={PlayerContainer} />
-      <Route path='/playlist' component={PlayerContainer} />
+      <Route path='/playlist(/:fbid)' component={PlayerContainer} />
     </Route>
   </Router>
 );

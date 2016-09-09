@@ -5,9 +5,19 @@ import PlayerLayout from 'components/PlayerLayout';
 
 // import styles from './styles.css';
 import store from 'config/store';
-// import * as action from './actions';
+import * as playlist from 'containers/Playlist/actions';
 
 class PlayerContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    if(this.props.params.fbid) {
+        store.dispatch(playlist.fetch(this.props.params.fbid));
+    }
+  }
+
   render() {
     return(
       <PlayerLayout isLoading={this.props.isLoading} />
