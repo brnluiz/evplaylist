@@ -22,7 +22,7 @@ class HomePage extends React.Component {
   responseFacebook(response) {
     let token = response.accessToken;
     store.dispatch(playlist.setFbToken(token));
-    hashHistory.push('/playlist');
+    hashHistory.push('/');
   }
 
   render() {

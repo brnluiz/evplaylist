@@ -2,9 +2,11 @@ import * as type from './constants';
 import {fromJS} from 'immutable';
 
 const initialState = fromJS({
+  loading: true,
+  error: false,
   status: 'paused',
   position: '0',
-  video: 'iV5VKdcQOJE',
+  video: '',
   height: 'auto',
   width: 'auto',
   index: 0
@@ -12,29 +14,27 @@ const initialState = fromJS({
 
 function playerReducer(state = initialState, action) {
   switch(action.type) {
-    case type.UPDATE_DIMS:
+    case type.INIT:
       return state
+      .set('video', action.playlist[0].video_id)
       .set('width', action.width)
-      .set('height', action.height);
+      .set('height', action.height)
+      .set('loading', false);
+
+    case type.UPDATE_STATUS_LOADING:
+      return state
+      .set('loading', action.status);
 
     case type.NEXT:
-      // // TODO: check how to use a map() to implement this
-      // let index = state.get('index');
-      // let playlistSize = state.get('playlist').size;
-      //
-      // // If the playlist finished, go to the beginning of the playlist
-      // // Otherwise just increment the index
-      // (index+1 >= playlistSize) ? index = 0 : index++;
-      //
-      // // Get the next video id
-      // let video = state.getIn(['playlist', index, 'video_id']);
-      //
-      // console.log('Video:', video, '|index:', index);
-      //
-      // return state
-      // .set('video', video)
-      // .set('index', index);
-      return state;
+      let index = state.get('index');
+
+      // If the playlist finished go to the beginning of the playlist,
+      // otherwise just increment the index
+      (index+1 >= action.playlist.length) ? (index = 0) : (index++);
+
+      return state
+      .set('video', action.playlist[index].video_id)
+      .set('index', index);
 
     case type.PLAY:
       return state
@@ -42,7 +42,8 @@ function playerReducer(state = initialState, action) {
       .set('index', action.item.id);
 
     case type.UPDATE:
-      return state.set('status', action.status);
+      return state
+      .set('status', action.status);
 
     default:
       return state;

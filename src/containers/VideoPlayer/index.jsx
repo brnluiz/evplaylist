@@ -15,10 +15,10 @@ class VideoPlayer extends React.Component {
   readyHandler() {
     let width = document.getElementsByClassName('player')[0].offsetWidth;
     let height = document.getElementsByClassName('player')[0].offsetHeight;
-    store.dispatch(action.updateDimensions(width, height));
+    store.dispatch(action.init(width, height));
   }
 
-  playNextHandler() {
+  nextHandler() {
     store.dispatch(action.updateStatus('finished'));
     store.dispatch(action.next());
   }
@@ -31,6 +31,9 @@ class VideoPlayer extends React.Component {
     store.dispatch(action.updateStatus('paused'));
   }
 
+  stateChangeHandler(event) {
+  }
+
   render() {
     return(
       <YouTube
@@ -38,7 +41,8 @@ class VideoPlayer extends React.Component {
         videoId={this.props.player.video}
         opts={this.props.yt}
         onReady={this.readyHandler}
-        onEnd={this.playNextHandler}
+        onStateChange={this.stateChangeHandler}
+        onEnd={this.nextHandler}
         onPlay={this.playHandler}
         onPause={this.pauseHandler}
       />
@@ -53,14 +57,17 @@ VideoPlayer.propTypes = {
 VideoPlayer.defaultProps = {
   yt: {
     playerVars: {
-      autoplay: 0
+      autoplay: 1,
+      // listType: 'playlist',
+      // list: [],
     }
   }
 }
 
 const mapStateToProps = function(store) {
   return {
-    player: store.player.toJS()
+    player: store.player.toJS(),
+    playlist: store.playlist.toJS().items
   };
 };
 

@@ -6,13 +6,12 @@ import PlaylistList from 'components/PlaylistList';
 
 import styles from './styles.css';
 import store from 'config/store';
-import * as action from './actions';
 import * as player from 'containers/VideoPlayer/actions';
 
 class Playlist extends React.Component {
   constructor(props) {
     super(props);
-    store.dispatch(action.fetch());
+    // store.dispatch(action.fetch());
   }
 
   itemClickHandler(item) {
@@ -24,6 +23,7 @@ class Playlist extends React.Component {
       <PlaylistList
         items={this.props.playlist}
         height={this.props.player.height}
+        show={!this.props.player.isLoading}
         onClickHandler={this.itemClickHandler.bind(this)}
         />
     );

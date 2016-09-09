@@ -3,8 +3,13 @@ import PlaylistItem from 'components/PlaylistItem';
 
 import styles from './styles.css';
 
-const PlaylistList = ({items, onClickHandler, height}) => (
-  <ul className="list-group music-list" style={{height: height}}>
+const PlaylistList = ({items, onClickHandler, height, show}) => (
+  <ul
+    className="list-group music-list"
+    style={{
+      height: height
+    }}
+  >
     {items.map((music) => <PlaylistItem
       props={music}
       key={music.id}

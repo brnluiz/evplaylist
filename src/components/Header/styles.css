@@ -1,0 +1,65 @@
+.navbar-default {
+  padding: 2px 0;
+  background-color: #fff;
+  border: none;
+  border-bottom: 1px solid #eee;
+  border-radius: 0px;
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  padding: 8px;
+  font-size: 28px;
+  font-weight: 300;
+}
+
+input, .input-group, .form-control, .btn {
+  border-radius: 0
+}
+
+@media (max-width: 767px) {
+  .navbar-form .input-group {
+    width: 100%;
+  }
+  .player-infos {
+    text-align: center;
+  }
+  .player-about {
+    display: none;
+  }
+  .player-controls .player-infos h3 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-form .input-group {
+    width: 205px;
+  }
+  .player-infos {
+    padding: 0;
+    text-align: center;
+    h3 {
+      font-size: 12px;
+    }
+  }
+  .player-about {
+    padding: 0;
+    display: none;
+  }
+  .player-controls .player-infos h3 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar-form .input-group {
+    width: 425px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-form .input-group {
+    width: 625px;
+  }
+}

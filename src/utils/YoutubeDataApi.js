@@ -1,9 +1,16 @@
 import axios from 'axios';
+import moment from 'moment';
 
 export default class YoutubeDataApi {
   constructor(apiKey = '') {
     this.apiKey = apiKey;
     this.batch = new Array();
+  }
+
+  zeroFill(string, length = 2) {
+    let str = string+'';
+    while (str.length < length) str = '0' + str;
+    return str;
   }
 
   isUrl(string) {
@@ -18,7 +25,12 @@ export default class YoutubeDataApi {
   }
 
   duration(isoTime) {
-    return isoTime.replace("PT","").replace("H",":").replace("M",":").replace("S","");
+    let duration = moment.duration(isoTime);
+    return (
+      this.zeroFill(duration.minutes())
+      + ':'
+      + this.zeroFill(duration.seconds())
+    );
   }
 
   insert(data) {

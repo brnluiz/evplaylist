@@ -4,7 +4,10 @@ import * as keys from 'config/keys';
 
 import FacebookPromises from 'utils/FacebookPromises';
 import YoutubeDataApi from 'utils/YoutubeDataApi';
-let testQuery = '/1120426798025135/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
+
+const makeQuery = (id) => {
+    return '/' + id +'/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
+}
 
 export const setFbToken = (token) => {
   return {
@@ -13,15 +16,27 @@ export const setFbToken = (token) => {
   }
 }
 
-export const fetch = () => {
+export const isLoading = (status) => {
+  return {
+    type: type.UPDATE_STATUS_LOADING,
+    status: status
+  }
+}
+
+export const fetch = (id) => {
   return (dispatch, getState) => {
-    console.log(getState().playlist);
+    dispatch({
+      type: type.UPDATE_STATUS_LOADING,
+      status: true
+    });
+
     let token = getState().playlist.get('fbtoken');
     let fb = new FacebookPromises(token);
     let yt = new YoutubeDataApi(keys.YT_API_KEY);
 
-    fb.get(testQuery).then(function(res) {
-      let posts = res.data.filter((obj, pos) => {
+    let query = makeQuery(id);
+    fb.get(query).then(function(res) {
+      let posts = res.data.filter((obj, pos, origin) => {
         // Removes posts without links
         if (!obj.link) return false;
 
@@ -29,7 +44,8 @@ export const fetch = () => {
         if (!yt.id(obj.link)) return false;
 
         // Filter duplicate objects
-        if (res.data.indexOf(obj) != pos) return false;
+        let firstPost = origin.map(mapObj => mapObj.link).indexOf(obj.link);
+        if (firstPost != pos) return false;
 
         return true;
       })
@@ -50,7 +66,7 @@ export const fetch = () => {
           post_likes: obj.likes.summary.total_count
         };
       });
-
+      
       return posts;
     })
     .then(function(posts){
@@ -59,23 +75,27 @@ export const fetch = () => {
       // TODO: this feels smelly | promisse inside a promisse
       // Process all promises and it's agregated data
       ytBatch.then((videos) => {
-
         // Integrate the youtube data with the facebook data
-        let playlist = videos.map((video, index) => {
+        let playlist = videos
+        .filter((obj, pos, origin) => {
+          let firstVideo = origin.map(mapObj => mapObj.id).indexOf(obj.id);
+          if (firstVideo != pos) return false;
 
+          return true;
+        })
+        .map((video, index) => {
           // Search for the first Facebook post related to the video
           let relatedPost = posts.filter((post) => {
             return (post.video_id === video.id) ? true : false;
           })[0];
 
           // Add the missing data to the related post
-          relatedPost.index    = index;
+          // relatedPost.id       = index;
           relatedPost.title    = video.snippet.localized.title;
           relatedPost.duration = yt.duration(video.contentDetails.duration);
 
           return relatedPost;
         });
-        console.log(playlist);
 
         dispatch({
           type: type.FETCH,
