@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.14.0",
+    "fb-promise-wrapper": "^1.0.0",
     "fb-react-sdk": "^1.0.4",
     "immutable": "^3.8.1",
     "moment": "^2.14.1",

@@ -7,11 +7,6 @@ import {Router, hashHistory} from 'react-router';
 import store from 'config/store';
 import * as keys from 'config/keys';
 
-import FacebookPromises from 'utils/FacebookPromises';
-import YoutubeDataApi from 'utils/YoutubeDataApi';
-
-let testQuery = '/1120426798025135/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
-
 import * as playlist from 'containers/Playlist/actions';
 
 class HomePage extends React.Component {
@@ -20,6 +15,7 @@ class HomePage extends React.Component {
   }
 
   responseFacebook(response) {
+    // TODO: save it at a cookie AND extend it
     let token = response.accessToken;
     store.dispatch(playlist.setFbToken(token));
     hashHistory.push('/');
