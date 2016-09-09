@@ -2,10 +2,6 @@ import * as type from './constants';
 import {fromJS} from 'immutable';
 import * as keys from 'config/keys';
 
-import FacebookPromises from 'utils/FacebookPromises';
-import YoutubeDataApi from 'utils/YoutubeDataApi';
-let testQuery = '/1120426798025135/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
-
 const initialState = fromJS({
   loading: true,
   error: false,

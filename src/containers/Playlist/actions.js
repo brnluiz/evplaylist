@@ -4,6 +4,7 @@ import * as keys from 'config/keys';
 
 import FacebookPromises from 'utils/FacebookPromises';
 import YoutubeDataApi from 'utils/YoutubeDataApi';
+import * as time from 'utils/TimeManipulation';
 
 const makeQuery = (id) => {
     return '/' + id +'/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
@@ -66,7 +67,7 @@ export const fetch = (id) => {
           post_likes: obj.likes.summary.total_count
         };
       });
-      
+
       return posts;
     })
     .then(function(posts){
@@ -92,7 +93,7 @@ export const fetch = (id) => {
           // Add the missing data to the related post
           // relatedPost.id       = index;
           relatedPost.title    = video.snippet.localized.title;
-          relatedPost.duration = yt.duration(video.contentDetails.duration);
+          relatedPost.duration = time.beautifyYoutube(video.contentDetails.duration);
 
           return relatedPost;
         });

@@ -1,16 +1,9 @@
 import axios from 'axios';
-import moment from 'moment';
 
 export default class YoutubeDataApi {
   constructor(apiKey = '') {
     this.apiKey = apiKey;
     this.batch = new Array();
-  }
-
-  zeroFill(string, length = 2) {
-    let str = string+'';
-    while (str.length < length) str = '0' + str;
-    return str;
   }
 
   isUrl(string) {
@@ -22,15 +15,6 @@ export default class YoutubeDataApi {
   id(url) {
     let pattern = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shared\?ci=|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
     return (url.match(pattern)) ? RegExp.$1 : false;
-  }
-
-  duration(isoTime) {
-    let duration = moment.duration(isoTime);
-    return (
-      this.zeroFill(duration.minutes())
-      + ':'
-      + this.zeroFill(duration.seconds())
-    );
   }
 
   insert(data) {
