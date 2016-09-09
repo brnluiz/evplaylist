@@ -52,7 +52,6 @@ class Header extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let id = this.parseEventInput(this.state.url);
-
     this.props.onSubmit({fbid: id});
   }
 

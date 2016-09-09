@@ -8,7 +8,6 @@ import store from 'config/store';
 
 class AppLayout extends React.Component {
   headerHandler(data) {
-    console.log(data);
     store.dispatch(playlist.fetch(data.fbid));
   }
 

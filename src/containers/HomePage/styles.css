@@ -1,0 +1,40 @@
+.homepage {
+  margin-top: 15%;
+}
+
+.homepage h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.homepage .input-group {
+  margin-top: 5px;
+  display: block;
+}
+
+.homepage .input-group .form-control {
+  display: inline-block;
+}
+
+.homepage .input-group .input-group-btn {
+  display: inherit;
+}
+
+.homepage h2 {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 15px;
+  font-weight: 300;
+  display: block;
+}
+
+.homepage a {
+  display: block;
+  font-size: 48px;
+  color: #333;
+  font-weight: 300;
+}
+
+.homepage a:hover {
+  text-decoration: none;
+}

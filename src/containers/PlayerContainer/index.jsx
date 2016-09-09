@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import PlayerLayout from 'components/PlayerLayout';
 
-// import styles from './styles.css';
 import store from 'config/store';
 import * as playlist from 'containers/Playlist/actions';
 
@@ -14,7 +13,7 @@ class PlayerContainer extends React.Component {
 
   componentDidMount() {
     if(this.props.params.fbid) {
-        store.dispatch(playlist.fetch(this.props.params.fbid));
+      store.dispatch(playlist.fetch(this.props.params.fbid));
     }
   }
 

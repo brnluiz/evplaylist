@@ -2,7 +2,7 @@ import * as type from './constants';
 import thunk from 'redux-thunk';
 import * as keys from 'config/keys';
 
-import FacebookPromises from 'utils/FacebookPromises';
+import {Facebook} from 'utils/FacebookPromises';
 import YoutubeDataApi from 'utils/YoutubeDataApi';
 import * as time from 'utils/TimeManipulation';
 
@@ -32,11 +32,10 @@ export const fetch = (id) => {
     });
 
     let token = getState().playlist.get('fbtoken');
-    let fb = new FacebookPromises(token);
     let yt = new YoutubeDataApi(keys.YT_API_KEY);
 
     let query = makeQuery(id);
-    fb.get(query).then(function(res) {
+    Facebook.get(query).then(function(res) {
       let posts = res.data.filter((obj, pos, origin) => {
         // Removes posts without links
         if (!obj.link) return false;
@@ -97,7 +96,7 @@ export const fetch = (id) => {
 
           return relatedPost;
         });
-
+        console.log(playlist);
         dispatch({
           type: type.FETCH,
           items: playlist
