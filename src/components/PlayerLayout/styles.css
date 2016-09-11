@@ -2,3 +2,34 @@
   border-top: 4px solid #333;
   border-bottom: 4px solid #d9534f;
 }
+
+.details {
+  font-weight: 300;
+  font-size: 13px;
+  color: #fff;
+  background-color: #333;
+  padding: 10px 12px;
+}
+span {
+  font-weight: 400;
+}
+.details-buttons {
+  text-align: right;
+}
+.details a {
+  color: #fff;
+}
+.details a:hover {
+  text-decoration: underline;
+}
+
+.details .alter-btn {
+  font-weight: 400;
+  padding: 0 10px;
+  &:hover, &:active {
+    text-decoration: none;
+    background-color: #444;
+    border: 1px solid #4f4f4f;
+
+  }
+}

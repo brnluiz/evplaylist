@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import PlaylistList from 'components/PlaylistList';
 
-import styles from './styles.css';
 import store from 'config/store';
 import * as player from 'containers/VideoPlayer/actions';
 

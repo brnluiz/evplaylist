@@ -86,8 +86,13 @@ export const fetch = (q) => {
     let token = getState().playlist.get('fbtoken');
     let yt = new YoutubeDataApi(keys.YT_API_KEY);
 
+    Facebook.get(id+'?fields=name').then((res) => {
+      console.log(res);
+      return ;
+    });
+
     let query = makeQuery(id);
-    Facebook.get(query).then(function(res) {
+    Facebook.get(query).then((res) => {
       let posts = res.data.filter((obj, pos, origin) => {
         // Removes posts without links
         if (!obj.link) return false;

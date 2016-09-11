@@ -32,7 +32,7 @@ class App extends React.Component {
       // redirect to the login page
     }
 
-    return(
+    return (
       <AppLayout
         queryHandler={this.queryHandler}
         queryValue={this.props.fbid}

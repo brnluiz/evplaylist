@@ -7,14 +7,15 @@ const initialState = fromJS({
   error: false,
   fbtoken: '',
   fbid: '',
+  title: '',
   items: [{
     id: 0,
-    video_id: 'iV5VKdcQOJE',
-    post_id: '123',
-    user_id: '456',
-    user: 'Bruno Luiz da Silva',
-    title: '505 lyrics - Arctic Monkeys',
-    duration: '3:00',
+    video_id: '',
+    post_id: '',
+    user_id: '',
+    user: '',
+    title: '',
+    duration: 'MM:SS',
     post_likes: 12
   }]
 });

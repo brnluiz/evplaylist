@@ -18,8 +18,13 @@ class PlayerContainer extends React.Component {
   }
 
   render() {
+    // TODO: Show error message in cases where the playlist.fetch throw an error
     return(
-      <PlayerLayout isLoading={this.props.isLoading} />
+      <PlayerLayout
+        isLoading={this.props.isLoading}
+        fbid={this.props.fbid}
+        title='test title'
+      />
     );
   }
 }
@@ -31,6 +36,7 @@ const mapStateToProps = function(store) {
 
   return {
     isLoading: playlistLoadingStatus,
+    fbid: store.playlist.toJS().fbid
   };
 };
 
