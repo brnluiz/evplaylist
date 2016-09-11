@@ -1,5 +1,5 @@
-.list-group {
+.list-group.music-list {
   overflow-y: scroll;
   margin: 0;
-  height: 100%;
+  height: 439px;
 }

@@ -20,13 +20,17 @@ class App extends React.Component {
   componentDidMount() {
   }
 
+  queryHandler(data) {
+    store.dispatch(playlist.fetch(data.query));
+  }
+
   responseFacebook(response) {
   }
 
   render() {
     if(this.props.isLoggedIn) {
       return(
-        <AppLayout>
+        <AppLayout queryHandler={this.queryHandler}>
           {this.props.children}
         </AppLayout>
       );

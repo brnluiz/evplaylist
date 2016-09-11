@@ -8,51 +8,17 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: '173019273133291'
+      query: '173019273133291'
     }
   }
 
   handleChange(e) {
-    this.setState({url: e.target.value});
-  }
-
-  isUrl(string) {
-    let pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*)#?(?:[\.\!\/\\\w]*))?)/g;
-    return (string.match(pattern)) ? true : false;
-  }
-
-  isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
-  parseEventInput(input) {
-    if(!this.isUrl(input)) return input;
-
-    let parser = document.createElement('a');
-    parser.href = input;
-    let pathname = parser.pathname;
-    let pathParams = pathname.split('/');
-    let host = parser.host;
-
-    // TODO: throw an error
-    if (host.indexOf('facebook') === -1) return false;
-
-    // Check if it is an event and returns it's id
-    if(pathParams[1] == 'events' && this.isNumeric(pathParams[2])) {
-      return pathParams[2];
-    }
-
-    // Else, just get the first number and return it
-    let regex = /(\d+)/g; // regex to get only numbers
-    let numbersFromUrl = url.match(regex);
-    if (numbersFromUrl[0] === undefined) return false;
-    return numbersFromUrl[0];
+    this.setState({query: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    let id = this.parseEventInput(this.state.url);
-    this.props.onSubmit({fbid: id});
+    this.props.onSubmit({query: this.state.query});
   }
 
   render() {
@@ -81,7 +47,7 @@ class Header extends React.Component {
               type="text"
               name="event"
               className="form-control"
-              value={this.state.url}
+              value={this.state.query}
               onChange={this.handleChange.bind(this)} />
               <span className="input-group-btn">
                 <button type="submit" className="btn btn-danger" >

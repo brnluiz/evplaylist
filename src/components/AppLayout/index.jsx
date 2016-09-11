@@ -7,14 +7,10 @@ import * as playlist from 'Containers/Playlist/actions';
 import store from 'config/store';
 
 class AppLayout extends React.Component {
-  headerHandler(data) {
-    store.dispatch(playlist.fetch(data.fbid));
-  }
-
   render() {
     return (
       <div>
-        <Header onSubmit={this.headerHandler} />
+        <Header onSubmit={this.props.queryHandler} />
         <div className='container'>
           {this.props.children}
         </div>

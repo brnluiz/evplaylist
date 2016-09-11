@@ -6,6 +6,46 @@ import {Facebook} from 'utils/FacebookPromises';
 import YoutubeDataApi from 'utils/YoutubeDataApi';
 import * as time from 'utils/TimeManipulation';
 
+const isUrl = (str) => {
+  let pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*)#?(?:[\.\!\/\\\w]*))?)/g;
+  return (str.match(pattern)) ? true : false;
+}
+
+const isNumeric = (n) => {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+const getEventId = (str) => {
+  // If it is a number, probably it is the event id itself
+  if(isNumeric(str)) return str;
+
+  if(str == undefined) throw 'not-str';
+
+  // If it is not an URL, then discard it
+  if(!isUrl(str) || str == undefined) throw 'not-url';
+
+  // Get the URL parameters
+  let parser = document.createElement('a');
+  parser.href = str;
+  let pathname = parser.pathname;
+  let pathParams = pathname.split('/');
+  let host = parser.host;
+
+  // TODO: throw an error
+  if (host.indexOf('facebook') === -1) throw 'not-facebook';
+
+  // Check if it is an event and returns it's id
+  if(pathParams[1] == 'events' && isNumeric(pathParams[2])) {
+    return pathParams[2];
+  }
+
+  // Else, just get the first number and return it
+  let regex = /(\d+)/g; // regex to get only numbers
+  let numbersFromUrl = str.match(regex);
+  if (numbersFromUrl[0] === undefined) throw 'not-id';
+  return numbersFromUrl[0];
+}
+
 const makeQuery = (id) => {
     return '/' + id +'/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
 }
@@ -24,12 +64,20 @@ export const isLoading = (status) => {
   }
 }
 
-export const fetch = (id) => {
+export const fetch = (q) => {
   return (dispatch, getState) => {
     dispatch({
       type: type.UPDATE_STATUS_LOADING,
       status: true
     });
+
+    let id = '';
+    try {
+      id = getEventId(q);
+    } catch (e) {
+      console.log(e);
+      return ;
+    }
 
     let token = getState().playlist.get('fbtoken');
     let yt = new YoutubeDataApi(keys.YT_API_KEY);

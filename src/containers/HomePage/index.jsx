@@ -31,23 +31,16 @@ class HomePage extends React.Component {
           </div>
         </div>
 
-        <div className="row" >
-          <div className="col-md-offset-3">
-            <form
-            className="navbar-form navbar-left">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Insert the event URL here and..."
-                />
-                <span className="input-group-btn">
-                  <button type="submit" className="btn btn-danger" >
-                    <span className="glyphicon glyphicon-play" aria-hidden="true"></span>
-                  </button>
-                </span>
-              </div>
-            </form>
+        <div className="row">
+          <div className="col-lg-offset-3 col-lg-6">
+            <div className="input-group">
+              <input type="text" className="form-control" placeholder="Insert the event URL here and..." />
+              <span className="input-group-btn">
+                <button className="btn btn-danger" type="button">
+                  <span className="glyphicon glyphicon-play" aria-hidden="true"></span>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
       </div>
