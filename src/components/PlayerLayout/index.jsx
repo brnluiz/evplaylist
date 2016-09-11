@@ -20,6 +20,10 @@ const PlayerLayout = (props) => {
     />
   }
 
+  let style = {
+    display: 'block'
+  }
+
   return (
     <div>
       <div className='row playerlayout'>
@@ -43,7 +47,18 @@ const PlayerLayout = (props) => {
           <script type='text/javascript' src='//static.addtoany.com/menu/page.js'></script>
         </div>
       </div>
-      <div className='ad'></div>
+      <div className='row ad'>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins className="adsbygoogle"
+             style={style}
+             data-ad-client="ca-pub-0717102508536262"
+             data-ad-slot="7559481052"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+      </div>
       <Footer />
     </div>
   );

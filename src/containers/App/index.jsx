@@ -22,6 +22,8 @@ class App extends React.Component {
   }
 
   queryHandler(data) {
+    store.dispatch(playlist.fetch(data.query));
+
     let query = playlist.getEventId(data.query);
     hashHistory.push('/playlist/'+query);
   }

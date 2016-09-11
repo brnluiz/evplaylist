@@ -39,6 +39,7 @@ function playlistReduce(state = initialState, action) {
     case type.FETCH:
       return state
       .set('fbid', action.fbid)
+      .set('title', action.title)
       .set('items', action.items)
       .set('loading', false);
 

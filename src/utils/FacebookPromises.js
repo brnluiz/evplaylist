@@ -21,7 +21,7 @@ export default class FacebookPromises {
   }
 }
 
-const promises = {
+export const promises = {
   init: () => {
     return new Promise((resolve, reject) => {
       if (typeof FB !== 'undefined') {

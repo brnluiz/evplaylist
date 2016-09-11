@@ -76,6 +76,7 @@ export const fetch = (q) => {
     });
 
     let id = '';
+    let title = '';
     try {
       id = getEventId(q);
     } catch (e) {
@@ -83,15 +84,16 @@ export const fetch = (q) => {
       return ;
     }
 
-    let token = getState().playlist.get('fbtoken');
     let yt = new YoutubeDataApi(keys.YT_API_KEY);
 
     Facebook.get(id+'?fields=name').then(res => {
-      console.log(res);
-    });
-
-    let query = makeQuery(id);
-    Facebook.get(query).then((res) => {
+      // Get the event title and build the query to get the post list
+      title = res.name;
+      return makeQuery(id);
+    }, err => { throw err; })
+    .then(query => Facebook.get(query), err => { throw err; })
+    .then(res => {
+      // Manipulate the post list
       let posts = res.data.filter((obj, pos, origin) => {
         // Removes posts without links
         if (!obj.link) return false;
@@ -124,8 +126,8 @@ export const fetch = (q) => {
       });
 
       return posts;
-    })
-    .then(function(posts){
+    }, err => { throw err; })
+    .then(posts => {
       let ytBatch = yt.fetch();
 
       // TODO: this feels smelly | promisse inside a promisse
@@ -146,7 +148,6 @@ export const fetch = (q) => {
           })[0];
 
           // Add the missing data to the related post
-          // relatedPost.id       = index;
           relatedPost.title    = video.snippet.localized.title;
           relatedPost.duration = time.beautifyYoutube(video.contentDetails.duration);
 
@@ -158,10 +159,11 @@ export const fetch = (q) => {
         dispatch({
           type: type.FETCH,
           items: playlist,
+          title: title,
           fbid: id
         });
       });
-    })
+    }, err => { throw err; })
     .catch(error => {
       console.warn(error);
       dispatch({
