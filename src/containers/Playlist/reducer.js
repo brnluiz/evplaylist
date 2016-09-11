@@ -6,6 +6,7 @@ const initialState = fromJS({
   loading: true,
   error: false,
   fbtoken: '',
+  fbid: '',
   items: [{
     id: 0,
     video_id: 'iV5VKdcQOJE',
@@ -33,6 +34,7 @@ function playlistReduce(state = initialState, action) {
 
     case type.FETCH:
       return state
+      .set('fbid', action.fbid)
       .set('items', action.items)
       .set('loading', false);
 

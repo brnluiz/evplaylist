@@ -28,27 +28,27 @@ class App extends React.Component {
   }
 
   render() {
-    if(this.props.isLoggedIn) {
-      return(
-        <AppLayout queryHandler={this.queryHandler}>
-          {this.props.children}
-        </AppLayout>
-      );
-    } else {
-      <FacebookLogin
-        appId={keys.FB_APP_ID}
-        autoLoad={true}
-        callback={this.responseFacebook}
-      />
+    if(!this.props.isLoggedIn) {
+      // redirect to the login page
     }
 
-    return <Loading />
+    return(
+      <AppLayout
+        queryHandler={this.queryHandler}
+        queryValue={this.props.fbid}
+        isLoggedIn={this.props.isLoggedIn}
+        responseFacebook={this.responseFacebook}
+      >
+        {this.props.children}
+      </AppLayout>
+    );
   }
 }
 
 const mapStateToProps = function(store) {
   return {
-    isLoggedIn: store.app.toJS().loggedIn
+    isLoggedIn: store.app.toJS().loggedIn,
+    fbid: store.playlist.toJS().fbid
   }
 };
 

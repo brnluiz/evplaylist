@@ -15,7 +15,7 @@ const isNumeric = (n) => {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-const getEventId = (str) => {
+export const getEventId = (str) => {
   // If it is a number, probably it is the event id itself
   if(isNumeric(str)) return str;
 
@@ -147,7 +147,8 @@ export const fetch = (q) => {
         console.log(playlist);
         dispatch({
           type: type.FETCH,
-          items: playlist
+          items: playlist,
+          fbid: id
         });
       });
     });

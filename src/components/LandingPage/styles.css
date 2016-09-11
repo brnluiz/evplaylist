@@ -23,7 +23,7 @@
   display: block;
 }
 
-.homepage a {
+.homepage h1 > a {
   display: block;
   font-size: 48px;
   color: #333;
