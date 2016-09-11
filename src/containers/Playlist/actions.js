@@ -165,7 +165,6 @@ export const fetch = (q) => {
       });
     }, err => { throw err; })
     .catch(error => {
-      console.warn(error);
       dispatch({
         type: type.ERROR,
         message: 'Check the passed event URL'

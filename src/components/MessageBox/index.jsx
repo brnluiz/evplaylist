@@ -11,9 +11,6 @@ const MessageBox = (props) => {
     color = 'error-box';
   }
 
-
-      console.log('oi');
-
   return (
     <div className='row'>
       <div className={'message-box '+color}>

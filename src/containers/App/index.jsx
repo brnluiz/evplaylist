@@ -29,13 +29,10 @@ class App extends React.Component {
   }
 
   responseFacebook(response) {
+    store.dispatch(action.checkLoginState());
   }
 
   render() {
-    if(!this.props.isLoggedIn) {
-      // redirect to the login page
-    }
-
     return (
       <AppLayout
         queryHandler={this.queryHandler}

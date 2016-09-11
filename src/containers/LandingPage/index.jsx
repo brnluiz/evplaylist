@@ -10,7 +10,7 @@ import * as keys from 'config/keys';
 import * as playlist from 'containers/Playlist/actions';
 import LandingPage from 'components/LandingPage';
 
-class HomePage extends React.Component {
+class LandingPageContainer extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -32,4 +32,4 @@ const mapStateToProps = function(store) {
   };
 };
 
-export default connect(mapStateToProps)(HomePage)
+export default connect(mapStateToProps)(LandingPageContainer)

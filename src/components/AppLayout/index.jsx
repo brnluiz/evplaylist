@@ -1,13 +1,25 @@
 import React from 'react';
 import { Component, PropTypes } from 'react';
-import Header from 'components/Header';
 import styles from './styles.css'
 
-import FacebookLogin from 'react-facebook-login';
-import * as keys from 'config/keys'
+import Header from 'components/Header';
+import LoginBox from 'components/LoginBox';
 
 class AppLayout extends React.Component {
   render() {
+    if (!this.props.isLoggedIn) {
+      return (
+        <div>
+          <Header
+            onSubmit={this.props.queryHandler}
+            queryValue={this.props.queryValue}
+          />
+          <div className='container'>
+            <LoginBox responseFacebook={this.props.responseFacebook} />
+          </div>
+        </div>
+      )
+    }
     return (
       <div>
         <Header
