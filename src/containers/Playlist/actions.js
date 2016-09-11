@@ -15,6 +15,14 @@ const isNumeric = (n) => {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+const makeQuery = (id) => {
+    return '/' + id +'/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
+}
+
+const sortByLikes = (a,b) => {
+  return (b.post_likes - a.post_likes);
+}
+
 export const getEventId = (str) => {
   // If it is a number, probably it is the event id itself
   if(isNumeric(str)) return str;
@@ -44,10 +52,6 @@ export const getEventId = (str) => {
   let numbersFromUrl = str.match(regex);
   if (numbersFromUrl[0] === undefined) throw 'not-id';
   return numbersFromUrl[0];
-}
-
-const makeQuery = (id) => {
-    return '/' + id +'/feed?fields=id,link,likes.limit(0).summary(true),from&limit=1000';
 }
 
 export const setFbToken = (token) => {
@@ -144,7 +148,9 @@ export const fetch = (q) => {
 
           return relatedPost;
         });
-        console.log(playlist);
+
+        playlist = playlist.sort(sortByLikes);
+
         dispatch({
           type: type.FETCH,
           items: playlist,
@@ -154,14 +160,3 @@ export const fetch = (q) => {
     });
   }
 }
-
-// export function click(item) {
-//   return (dispatch, getState) => {
-//     let player = getState().player;
-//     return {
-//       type: type.CLICK,
-//       item: item,
-//       player: player
-//     }
-//   };
-// }
