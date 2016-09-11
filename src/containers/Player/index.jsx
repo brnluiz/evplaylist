@@ -22,8 +22,9 @@ class PlayerContainer extends React.Component {
     return(
       <PlayerLayout
         isLoading={this.props.isLoading}
+        error={this.props.error}
         fbid={this.props.fbid}
-        title='test title'
+        title={this.props.title}
       />
     );
   }
@@ -36,7 +37,9 @@ const mapStateToProps = function(store) {
 
   return {
     isLoading: playlistLoadingStatus,
-    fbid: store.playlist.toJS().fbid
+    fbid: store.playlist.toJS().fbid,
+    title: store.playlist.toJS().title,
+    error: store.playlist.toJS().error
   };
 };
 

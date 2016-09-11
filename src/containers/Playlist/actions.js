@@ -27,10 +27,10 @@ export const getEventId = (str) => {
   // If it is a number, probably it is the event id itself
   if(isNumeric(str)) return str;
 
-  if(str == undefined) throw 'not-str';
+  if(str == undefined) throw 'The search field is empty';
 
   // If it is not an URL, then discard it
-  if(!isUrl(str) || str == undefined) throw 'not-url';
+  if(!isUrl(str) || str == undefined) throw 'The search field does not contain an URL';
 
   // Get the URL parameters
   let parser = document.createElement('a');
@@ -40,7 +40,7 @@ export const getEventId = (str) => {
   let host = parser.host;
 
   // TODO: throw an error
-  if (host.indexOf('facebook') === -1) throw 'not-facebook';
+  if (host.indexOf('facebook') === -1) throw 'The search field does not contain a Facebook URL';
 
   // Check if it is an event and returns it's id
   if(pathParams[1] == 'events' && isNumeric(pathParams[2])) {
@@ -50,7 +50,7 @@ export const getEventId = (str) => {
   // Else, just get the first number and return it
   let regex = /(\d+)/g; // regex to get only numbers
   let numbersFromUrl = str.match(regex);
-  if (numbersFromUrl[0] === undefined) throw 'not-id';
+  if (numbersFromUrl[0] === undefined) throw 'The search field does not contain a valid Facebook Event ID';
   return numbersFromUrl[0];
 }
 
@@ -79,16 +79,15 @@ export const fetch = (q) => {
     try {
       id = getEventId(q);
     } catch (e) {
-      console.log(e);
+      dispatch({ type: type.ERROR, message: e });
       return ;
     }
 
     let token = getState().playlist.get('fbtoken');
     let yt = new YoutubeDataApi(keys.YT_API_KEY);
 
-    Facebook.get(id+'?fields=name').then((res) => {
+    Facebook.get(id+'?fields=name').then(res => {
       console.log(res);
-      return ;
     });
 
     let query = makeQuery(id);
@@ -161,6 +160,13 @@ export const fetch = (q) => {
           items: playlist,
           fbid: id
         });
+      });
+    })
+    .catch(error => {
+      console.warn(error);
+      dispatch({
+        type: type.ERROR,
+        message: 'Check the passed event URL'
       });
     });
   }

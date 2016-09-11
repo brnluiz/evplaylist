@@ -4,12 +4,20 @@ import { Component, PropTypes } from 'react';
 import VideoPlayer from 'containers/VideoPlayer';
 import Playlist from 'containers/Playlist';
 import Loading from 'components/Loading';
+import MessageBox from 'components/MessageBox';
+import Footer from 'components/Footer';
 
 import styles from './styles.css'
 
 const PlayerLayout = (props) => {
   if (props.isLoading === true) {
     return <Loading />
+  }
+  else if (props.error.status == true) {
+    return <MessageBox
+      message={props.error.message}
+      type='error'
+    />
   }
 
   return (
@@ -35,6 +43,8 @@ const PlayerLayout = (props) => {
           <script type='text/javascript' src='//static.addtoany.com/menu/page.js'></script>
         </div>
       </div>
+      <div className='ad'></div>
+      <Footer />
     </div>
   );
 }

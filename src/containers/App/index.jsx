@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as keys from 'config/keys';
-
-import AppLayout from 'components/AppLayout';
+import {Router, hashHistory} from 'react-router';
 
 import store from 'config/store';
+import * as keys from 'config/keys';
 import * as playlist from 'containers/Playlist/actions';
+import * as action from './actions';
+
+import AppLayout from 'components/AppLayout';
 import Facebook from 'utils/FacebookPromises';
 import FacebookLogin from 'react-facebook-login';
-import * as action from './actions';
 import Loading from 'components/Loading';
 
 class App extends React.Component {
@@ -21,7 +22,8 @@ class App extends React.Component {
   }
 
   queryHandler(data) {
-    store.dispatch(playlist.fetch(data.query));
+    let query = playlist.getEventId(data.query);
+    hashHistory.push('/playlist/'+query);
   }
 
   responseFacebook(response) {

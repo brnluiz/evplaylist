@@ -1,5 +1,6 @@
 li {
   cursor: pointer;
+  font-weight: 300;
 }
 li:hover {
   background: #fafafa;

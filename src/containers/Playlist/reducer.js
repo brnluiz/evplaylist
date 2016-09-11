@@ -4,7 +4,10 @@ import * as keys from 'config/keys';
 
 const initialState = fromJS({
   loading: true,
-  error: false,
+  error: {
+    status: false,
+    message: ''
+  },
   fbtoken: '',
   fbid: '',
   title: '',
@@ -38,6 +41,12 @@ function playlistReduce(state = initialState, action) {
       .set('fbid', action.fbid)
       .set('items', action.items)
       .set('loading', false);
+
+    case type.ERROR:
+      return state
+        .set('loading', false)
+        .setIn(['error', 'status'], true)
+        .setIn(['error', 'message'], action.message);
 
     default:
       return state;

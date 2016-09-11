@@ -1,0 +1,22 @@
+.message-box {
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-size: 24px;
+  margin-top: 22.5%;
+  font-weight: 300;
+  color: #444;
+}
+
+.message-box .fa{
+  display: block;
+  font-size: 64px;
+  margin-bottom: 5px;
+}
+
+.info-box {
+  color: #333;
+}
+.error-box {
+  color: #d9534f;
+}
