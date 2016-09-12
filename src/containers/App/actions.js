@@ -15,7 +15,10 @@ export const checkLoginState = () => {
       });
     }, err => { throw err; })
     .catch(err => {
-      console.log(err);
+      dispatch({
+        type: type.CHECK_LOGIN_STATUS,
+        status: false
+      });
     })
   }
 }

@@ -118,6 +118,10 @@ export const fetch = (q) => {
         };
       });
 
+      if(posts.length == 0) {
+        throw { message: 'This event does not have a playlist' };
+      }
+
       return posts;
     }, err => { throw err; })
     .then(posts => {
@@ -160,7 +164,7 @@ export const fetch = (q) => {
     .catch(error => {
       dispatch({
         type: type.ERROR,
-        message: 'Check the passed event URL'
+        message: (error.message) ? error.message : 'Check the passed event URL'
       });
     });
   }
