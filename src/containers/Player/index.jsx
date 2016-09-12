@@ -12,13 +12,15 @@ class PlayerContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.params.fbid);
     if(this.props.params.fbid) {
       store.dispatch(playlist.fetch(this.props.params.fbid));
+    } else {
+      store.dispatch(playlist.setError('Please, type the Facebook Event URL on the field above'));
     }
   }
 
   render() {
-    // TODO: Show error message in cases where the playlist.fetch throw an error
     return(
       <PlayerLayout
         isLoading={this.props.isLoading}

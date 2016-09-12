@@ -6,6 +6,7 @@ import Playlist from 'containers/Playlist';
 import Loading from 'components/Loading';
 import MessageBox from 'components/MessageBox';
 import Footer from 'components/Footer';
+import GoogleAd from 'react-google-ad'
 
 import styles from './styles.css'
 
@@ -48,16 +49,7 @@ const PlayerLayout = (props) => {
         </div>
       </div>
       <div className='row ad'>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <ins className="adsbygoogle"
-             style={style}
-             data-ad-client="ca-pub-0717102508536262"
-             data-ad-slot="7559481052"
-             data-ad-format="auto"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
+        <GoogleAd client="ca-pub-0717102508536262" slot="7559481052" format="auto" />
       </div>
       <Footer />
     </div>

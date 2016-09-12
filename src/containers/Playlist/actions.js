@@ -54,13 +54,6 @@ export const getEventId = (str) => {
   return numbersFromUrl[0];
 }
 
-export const setFbToken = (token) => {
-  return {
-    type: type.SETUP,
-    fbtoken: token
-  }
-}
-
 export const isLoading = (status) => {
   return {
     type: type.UPDATE_STATUS_LOADING,
@@ -170,5 +163,12 @@ export const fetch = (q) => {
         message: 'Check the passed event URL'
       });
     });
+  }
+}
+
+export const setError = (message) => {
+  return {
+    type: type.ERROR,
+    message: message
   }
 }

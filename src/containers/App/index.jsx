@@ -38,6 +38,7 @@ class App extends React.Component {
         queryHandler={this.queryHandler}
         queryValue={this.props.fbid}
         isLoggedIn={this.props.isLoggedIn}
+        isLoading={this.props.isLoading}
         responseFacebook={this.responseFacebook}
       >
         {this.props.children}
@@ -49,6 +50,7 @@ class App extends React.Component {
 const mapStateToProps = function(store) {
   return {
     isLoggedIn: store.app.toJS().loggedIn,
+    isLoading: store.app.toJS().isLoading,
     fbid: store.playlist.toJS().fbid
   }
 };

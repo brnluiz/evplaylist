@@ -4,21 +4,19 @@ import styles from './styles.css'
 
 import Header from 'components/Header';
 import LoginBox from 'components/LoginBox';
+import Loading from 'components/Loading';
 
 class AppLayout extends React.Component {
   render() {
-    if (!this.props.isLoggedIn) {
-      return (
-        <div>
-          <Header
-            onSubmit={this.props.queryHandler}
-            queryValue={this.props.queryValue}
-          />
-          <div className='container'>
-            <LoginBox responseFacebook={this.props.responseFacebook} />
-          </div>
-        </div>
-      )
+    let content;
+    if (this.props.isLoading) {
+      content = <Loading />;
+    }
+    else if (!this.props.isLoggedIn) {
+      content = <LoginBox responseFacebook={this.props.responseFacebook} />
+    }
+    else {
+      content = this.props.children;
     }
 
     return (
@@ -28,7 +26,7 @@ class AppLayout extends React.Component {
           queryValue={this.props.queryValue}
         />
         <div className='container'>
-          {this.props.children}
+          {content}
         </div>
       </div>
     );

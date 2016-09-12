@@ -29,6 +29,7 @@ class QueryInput extends React.Component {
             type="text"
             name="event"
             className="form-control"
+            placeholder='Insert the Facebook Event URL here and click on play'
             value={this.state.query}
             onChange={this.handleChange.bind(this)}
           />
