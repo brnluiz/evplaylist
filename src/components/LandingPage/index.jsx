@@ -14,9 +14,9 @@ const LandingPage = ({onSubmit}) => (
       </div>
     </div>
 
-    <div className="row">
-      <div className="col-lg-offset-3 col-lg-6">
-        <QueryInput onSubmit={onSubmit} />
+    <div className="row homepage-field">
+      <div className="col-lg-offset-3 col-lg-6 center">
+        <QueryInput onSubmit={onSubmit} extraClass="homepage-field"/>
       </div>
     </div>
 

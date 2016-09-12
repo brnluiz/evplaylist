@@ -20,6 +20,7 @@ class AppLayout extends React.Component {
         </div>
       )
     }
+
     return (
       <div>
         <Header

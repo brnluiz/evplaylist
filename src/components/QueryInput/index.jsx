@@ -21,7 +21,7 @@ class QueryInput extends React.Component {
   render() {
     return (
       <form
-        className="navbar-form navbar-left"
+        className={"navbar-form navbar-left "+this.props.extraClass}
         onSubmit={this.handleSubmit.bind(this)}
       >
         <div className="input-group">

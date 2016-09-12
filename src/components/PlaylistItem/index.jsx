@@ -5,8 +5,8 @@ import styles from './styles.css';
 const PlaylistItem = ({props, onClickHandler}) => (
     <li className="list-group-item" onClick={onClickHandler}>
       <div className="music-info">
-        <span className="info-title">{props.title}</span>
         <span className="badge info-duration">{props.duration}</span>
+        <span className="info-title">{props.title}</span>
       </div>
       <div className="social-info">
         <span className="info-props info-post">
