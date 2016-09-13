@@ -22,6 +22,12 @@ const FaviconsWebpackPluginConfig = new FaviconsWebpackPlugin(
   './favicon.svg'
 );
 
+const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
+  compress: {
+    warnings: false
+  }
+});
+
 module.exports = {
   entry: [
     './src/index.jsx'
@@ -45,6 +51,7 @@ module.exports = {
   plugins: [
     HTMLWebpackPluginConfig,
     WebpackDefinePluginConfig,
-    FaviconsWebpackPluginConfig
+    FaviconsWebpackPluginConfig,
+    UglifyJsPluginConfig
   ]
 };

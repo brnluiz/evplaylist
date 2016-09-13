@@ -7,7 +7,7 @@ export const checkLoginState = () => {
     // Do not allow not logged users to reach this container
     Facebook.checkStatus().then((res) => {
       let status = (res.status === 'connected') ? true : false;
-      console.log('login-status', status);
+      
       dispatch({
         type: type.CHECK_LOGIN_STATUS,
         status: status

@@ -1,2 +1,5 @@
 - Create an i18n file
 - Update title based on playlist title
+- Refactor container names
+- Refactor redux consts
+- Check how to optimize playlist.action.fetch() promises
