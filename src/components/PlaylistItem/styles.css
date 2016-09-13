@@ -21,6 +21,14 @@
   border-radius: 0;
 }
 
+.music-list > .list-group-item.active {
+  color: #444;
+  background: #eee;
+  border: 1px solid #bbb;
+  border-right: none;
+  border-left: none;
+}
+
 .social-info {
   margin-top: 1px;
   font-size: 10px;

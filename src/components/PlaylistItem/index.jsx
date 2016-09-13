@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles.css';
 
-const PlaylistItem = ({props, onClickHandler}) => (
-    <li className="list-group-item" onClick={onClickHandler}>
+const PlaylistItem = ({props, onClickHandler, isActive}) => (
+    <li className={"list-group-item "+((isActive)?'active':'')} onClick={onClickHandler}>
       <div className="music-info">
         <span className="badge info-duration">{props.duration}</span>
         <span className="info-title">{props.title}</span>

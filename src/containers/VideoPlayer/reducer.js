@@ -7,7 +7,7 @@ const initialState = fromJS({
   status: 'paused',
   position: '0',
   video: '',
-  height: 'auto',
+  height: '439px',
   width: 'auto',
   index: 0
 });

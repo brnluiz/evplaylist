@@ -24,6 +24,7 @@ class Playlist extends React.Component {
         height={this.props.player.height}
         show={!this.props.player.isLoading}
         onClickHandler={this.itemClickHandler.bind(this)}
+        activeItem={this.props.player.video}
         />
     );
   }
