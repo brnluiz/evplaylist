@@ -1,3 +1,1 @@
-- The actual playing item have to be "selected" on the playlist
-- Fix an initial size to the playlist
 - Create an i18n file

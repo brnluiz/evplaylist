@@ -13,9 +13,18 @@ export const next = () => {
 }
 
 export const play = (item) => {
-  return {
-    type: type.PLAY,
-    item: item
+  return (dispatch, getState) => {
+    let playlist = getState().playlist.toJS().items;
+    let index = playlist.findIndex((obj) => {
+      return obj.id === item.id;
+    });
+    console.log(index);
+
+    dispatch({
+      type: type.PLAY,
+      item: item,
+      index: index
+    });
   }
 }
 

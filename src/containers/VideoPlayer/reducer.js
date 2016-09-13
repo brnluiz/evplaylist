@@ -39,7 +39,7 @@ function playerReducer(state = initialState, action) {
     case type.PLAY:
       return state
       .set('video', action.item.video_id)
-      .set('index', action.item.id);
+      .set('index', action.index);
 
     case type.UPDATE:
       return state
