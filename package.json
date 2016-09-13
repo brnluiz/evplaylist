@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=dev webpack-dev-server",
-    "prod": "NODE_ENV=prod webpack -p"
+    "start":  "NODE_ENV=dev  webpack-dev-server",
+    "prod":   "NODE_ENV=prod webpack -p",
+    "deploy": "NODE_ENV=prod npm run prod && gh-pages -d dist"
   },
   "author": "Bruno Luiz",
   "license": "ISC",

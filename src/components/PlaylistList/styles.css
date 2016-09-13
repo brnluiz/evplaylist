@@ -2,4 +2,5 @@
   overflow-y: scroll;
   margin: 0;
   height: 439px;
+  border-right: 1px solid #ddd;
 }

@@ -1,19 +1,23 @@
-li {
+.music-list li {
   cursor: pointer;
   font-weight: 300;
 }
-li:hover {
+.music-list li:hover {
   background: #fafafa;
 }
-li:active {
+.music-list li:active {
   background: #eee;
 }
 
-.list-group-item:first-child {
+.music-list.list-group-item:first-child {
   border-radius: 0;
 }
+.music-list li.list-group-item {
+  border-left: none;
+  border-right: none;
+}
 
-.list-group-item:last-child {
+.music-list.list-group-item:last-child {
   border-radius: 0;
 }
 
