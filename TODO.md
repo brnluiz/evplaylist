@@ -1,1 +1,2 @@
 - Create an i18n file
+- Update title based on playlist title

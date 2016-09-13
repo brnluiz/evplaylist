@@ -9,12 +9,18 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
-const WebpackDefinePlugin = new webpack.DefinePlugin({
+
+const WebpackDefinePluginConfig = new webpack.DefinePlugin({
   ENV: JSON.stringify(require(path.join(__dirname, './', env+'.config.js'))),
   "process.env": {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
   }
-})
+});
+
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FaviconsWebpackPluginConfig = new FaviconsWebpackPlugin(
+  './favicon.svg'
+);
 
 module.exports = {
   entry: [
@@ -38,6 +44,7 @@ module.exports = {
   },
   plugins: [
     HTMLWebpackPluginConfig,
-    WebpackDefinePlugin
+    WebpackDefinePluginConfig,
+    FaviconsWebpackPluginConfig
   ]
 };
