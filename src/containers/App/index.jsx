@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {Router, hashHistory} from 'react-router';
 
 import store from 'config/store';
-import * as keys from 'config/keys';
 import * as playlist from 'containers/Playlist/actions';
 import * as action from './actions';
 

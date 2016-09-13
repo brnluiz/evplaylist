@@ -20,9 +20,8 @@ const Header = ({onSubmit, queryValue}) => (
           </div>
 
           <QueryInput onSubmit={onSubmit} value={queryValue}/>
-
           <a className="btn btn-danger navbar-btn navbar-right" href="https://brunoluizone.typeform.com/to/QTLCIS" data-mode="1" target="_blank">Avalie o site</a>
-          </div>
+        </div>
       </nav>
     </div>
   </div>

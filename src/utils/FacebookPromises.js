@@ -1,5 +1,4 @@
 import graph from 'fb-react-sdk';
-import * as keys from 'config/keys';
 
 export const promises = {
   init: () => {
@@ -9,7 +8,7 @@ export const promises = {
       } else {
         window.fbAsyncInit = () => {
           FB.init({
-            appId    : keys.FB_APP_ID,
+            appId    : ENV.FB_APP_ID,
             cookie   : true,
             xfbml    : true,
             version  : 'v2.5'

@@ -1,6 +1,5 @@
 import * as type from './constants';
 import thunk from 'redux-thunk';
-import * as keys from 'config/keys';
 
 import {Facebook} from 'utils/FacebookPromises';
 import YoutubeDataApi from 'utils/YoutubeDataApi';
@@ -78,7 +77,7 @@ export const fetch = (q) => {
       status: true
     });
 
-    let yt = new YoutubeDataApi(keys.YT_API_KEY);
+    let yt = new YoutubeDataApi(ENV.YT_API_KEY);
 
     Facebook.get(id+'?fields=name').then(res => {
       // Get the event title and build the query to get the post list

@@ -1,6 +1,5 @@
 import * as type from './constants';
 import {fromJS} from 'immutable';
-import * as keys from 'config/keys';
 
 const initialState = fromJS({
   loading: true,
