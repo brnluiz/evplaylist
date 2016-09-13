@@ -43,13 +43,24 @@ const PlayerLayout = (props) => {
           <a href={'http://facebook.com/'+props.fbid} target='_blank'>{props.title}</a>
         </div>
         <div className='col-lg-4 details-buttons'>
-          <a className='alter-btn' href={'http://facebook.com/'+props.fbid} target='_blank'><i className='fa fa-external-link'></i> Event link</a>
-          <a className='a2a_dd alter-btn' href='https://www.addtoany.com/share_save'><i className='fa fa-share-alt-square'></i> Share playlist</a>
+          <a className='alter-btn' href={'http://facebook.com/'+props.fbid} target='_blank'>
+            <i className='fa fa-external-link'></i> Event link
+          </a>
+          <a className='a2a_dd alter-btn'
+            href='https://www.addtoany.com/share_save'
+            target='_blank'>
+            <i className='fa fa-share-alt-square'></i> Share playlist
+          </a>
+          <script type="text/javascript">
+          var a2a_config = a2a_config || {};
+          a2a_config.linkname = 'EvPlaylist';
+          a2a_config.linkurl = document.location.href;
+          </script>
           <script type='text/javascript' src='//static.addtoany.com/menu/page.js'></script>
         </div>
       </div>
       <div className='row ad'>
-        <GoogleAd client="ca-pub-0717102508536262" slot="7559481052" format="auto" />
+        <GoogleAd client='ca-pub-0717102508536262' slot='7559481052' format='auto' />
       </div>
       <Footer />
     </div>
