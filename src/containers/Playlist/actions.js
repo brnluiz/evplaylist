@@ -63,19 +63,20 @@ export const isLoading = (status) => {
 
 export const fetch = (q) => {
   return (dispatch, getState) => {
-    dispatch({
-      type: type.UPDATE_STATUS_LOADING,
-      status: true
-    });
-
     let id = '';
     let title = '';
-    try {
-      id = getEventId(q);
-    } catch (e) {
+
+    try { id = getEventId(q); }
+    catch (e) {
       dispatch({ type: type.ERROR, message: e });
       return ;
     }
+
+    dispatch({
+      type: type.UPDATE_STATUS_LOADING,
+      fbid: id,
+      status: true
+    });
 
     let yt = new YoutubeDataApi(keys.YT_API_KEY);
 

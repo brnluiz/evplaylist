@@ -4,18 +4,16 @@ import { Component, PropTypes } from 'react';
 class QueryInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: this.props.value
-    }
+    this.state = { query: this.props.value };
   }
 
   handleChange(e) {
-    this.setState({query: e.target.value});
+    this.setState({ query: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit({query: this.state.query});
+    this.props.onSubmit({ query: this.state.query });
   }
 
   render() {

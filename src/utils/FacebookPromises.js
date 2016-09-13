@@ -68,10 +68,7 @@ export const Facebook = {
         promises.login,
         error => { throw error; }
       )
-      .catch((error) => {
-        console.log({loading: false, data: {}, status: 'unknown'});
-        console.warn(error);
-      });
+      .catch((error) => { console.warn(error); });
   },
   doLogout() {
     return promises.init()
@@ -81,12 +78,9 @@ export const Facebook = {
       )
       .then(
         promises.logout,
-        error => { console.log({data: {}, status: 'unknown'}); }
+        error => { console.warn(error); }
       )
-      .catch(error => {
-        console.log({loading: false, data: {}, status: 'unknown'});
-        console.warn(error);
-      });
+      .catch(error => { console.warn(error); });
   },
   checkStatus() {
     return promises.init()

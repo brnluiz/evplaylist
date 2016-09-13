@@ -12,7 +12,6 @@ class PlayerContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.params.fbid);
     if(this.props.params.fbid) {
       store.dispatch(playlist.fetch(this.props.params.fbid));
     } else {

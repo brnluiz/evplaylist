@@ -28,22 +28,19 @@ function playlistReduce(state = initialState, action) {
     case type.INIT:
       return state;
 
-    case type.SETUP:
-      return state
-      .set('fbtoken', action.fbtoken);
-
     case type.UPDATE_STATUS_LOADING:
       return state
-      .set('loading', action.status)
-      .setIn(['error', 'status'], false);
+        .set('fbid', action.fbid)
+        .set('loading', action.status)
+        .setIn(['error', 'status'], false);
 
     case type.FETCH:
       return state
-      .set('fbid', action.fbid)
-      .set('title', action.title)
-      .set('items', action.items)
-      .set('loading', false)
-      .setIn(['error', 'status'], false);
+        .set('fbid', action.fbid)
+        .set('title', action.title)
+        .set('items', action.items)
+        .set('loading', false)
+        .setIn(['error', 'status'], false);
 
     case type.ERROR:
       return state
