@@ -9,7 +9,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/src/index.html',
   filename: 'index.html',
-  inject: 'body'
+  inject: true,
+  title: 'EvPlaylist'
 });
 
 const WebpackDefinePluginConfig = new webpack.DefinePlugin({
@@ -20,9 +21,22 @@ const WebpackDefinePluginConfig = new webpack.DefinePlugin({
 });
 
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const FaviconsWebpackPluginConfig = new FaviconsWebpackPlugin(
-  './favicon.svg'
-);
+const FaviconsWebpackPluginConfig = new FaviconsWebpackPlugin({
+  logo: './favicon.svg',
+  prefix: 'favicons/',
+  icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      favicons: true,
+      firefox: true,
+      opengraph: true,
+      twitter: true,
+      windows: true,
+      coast: false,
+      yandex: false,
+    }
+});
 
 const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
   minimize: true,

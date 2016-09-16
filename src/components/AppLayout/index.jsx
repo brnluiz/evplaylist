@@ -21,26 +21,8 @@ class AppLayout extends React.Component {
       content = this.props.children;
     }
 
-    const meta = {
-      title: 'EvPlaylist',
-      description: 'Easily create music playlists from Facebook Events',
-      canonical: 'http://brunoluiz.net/evplaylist',
-      meta: {
-        charSet: 'utf-8',
-        name: {
-          keywords: 'music,playlist,party,youtube'
-        },
-        property: {
-          'og:site_name': 'EvPlaylist'
-        }
-      },
-      auto: {
-        ograph: true
-      }
-    };
-
     return (
-      <DocumentMeta {...meta}>
+      <div>
         <Header
           onSubmit={this.props.queryHandler}
           queryValue={this.props.queryValue}
@@ -48,7 +30,7 @@ class AppLayout extends React.Component {
         <div className='container'>
           {content}
         </div>
-      </DocumentMeta>
+      </div>
     );
   }
 }
