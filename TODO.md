@@ -3,3 +3,4 @@
 - Refactor container names
 - Refactor redux consts
 - Check how to optimize playlist.action.fetch() promises
+- Fix the share button

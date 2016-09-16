@@ -3,6 +3,8 @@ const path = require('path');
 
 const env = process.env.NODE_ENV;
 
+let plugins = [];
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/src/index.html',
@@ -23,10 +25,20 @@ const FaviconsWebpackPluginConfig = new FaviconsWebpackPlugin(
 );
 
 const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
+  minimize: true,
   compress: {
     warnings: false
   }
 });
+
+plugins.push(
+  HTMLWebpackPluginConfig,
+  WebpackDefinePluginConfig,
+  FaviconsWebpackPluginConfig
+);
+if(env === 'production') {
+  plugins.push(UglifyJsPluginConfig);
+}
 
 module.exports = {
   entry: [
@@ -48,10 +60,5 @@ module.exports = {
       {test: /\.css$/, loader: "style-loader!css-loader"}
     ]
   },
-  plugins: [
-    HTMLWebpackPluginConfig,
-    WebpackDefinePluginConfig,
-    FaviconsWebpackPluginConfig,
-    UglifyJsPluginConfig
-  ]
+  plugins: plugins
 };

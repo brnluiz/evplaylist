@@ -10,7 +10,7 @@ const LandingPage = ({onSubmit}) => (
         <h1>
           <a href="#/"><span className="glyphicon glyphicon-headphones" aria-hidden="true"></span> EvPlaylist</a>
         </h1>
-        <h2>Playlists made from Facebook Events posts</h2>
+        <h2>Easily create music playlists from Facebook Events</h2>
       </div>
     </div>
 
